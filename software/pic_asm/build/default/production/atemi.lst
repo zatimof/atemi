@@ -1,0 +1,351 @@
+MPASM 5.72                         ATEMI.ASM   12-4-2017  11:31:38         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;ATEMI source code
+                      00002 ;PIC16F84A    
+                      00003 ;
+                      00004 ;SPEED++: RA1=1, RA3=1, RA3=0, RA1=0
+                      00005 ;SPEED--: RA2=1, RA3=1, RA3=0, RA2=0
+                      00006 ;
+                      00007 ;RA0 - OUTPUT OPTO
+                      00008 ;RA1-RA3 - INPUTS CHANGE SPEED     
+                      00009 ;
+                      00010 ;RB0 - INPUT RELAY ON
+                      00011 ;RB1 - OUTPUT RELAY BLOCK    
+                      00012 ;RB2 - INPUT FROM HALL SENSOR    
+                      00013 ;RB3-RB7 - NOT USE
+                      00014     
+                      00015 #include <p16f84.inc>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Jan 30 2017
+                      00005 ;  MPASM PIC16F84 processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2017 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      00207         LIST
+                      00016     
+2007   3FF9           00017     __CONFIG _CP_OFF & _XT_OSC & _WDTE_OFF & _PWRTE_OFF
+                      00018     
+                      00019     CBLOCK      10H
+  00000010            00020     CNT     :1
+  00000011            00021     PROT    :1
+  00000012            00022     SPEED   :1
+  00000013            00023     CMD1    :1
+  00000014            00024     CMD2    :1
+  00000015            00025     PRT     :1
+                      00026     ENDC
+                      00027     
+                      00028     ORG     0
+0000   2???           00029     GOTO    BEGIN
+                      00030     
+                      00031     ORG     100H
+                      00032     
+0100                  00033 BEGIN:
+0100   1283           00034     BCF     STATUS,RP0      ;????? ???????? ??????
+0101   0190           00035     CLRF    CNT             ;????? ?????????? ? ??????
+0102   0192           00036     CLRF    SPEED
+0103   0193           00037     CLRF    CMD1
+0104   0194           00038     CLRF    CMD2
+0105   0195           00039     CLRF    PRT
+0106   0185           00040     CLRF    PORTA
+0107   0186           00041     CLRF    PORTB
+                      00042     
+0108   3064           00043     MOVLW   64H             ;????????????? ??????????
+MPASM 5.72                         ATEMI.ASM   12-4-2017  11:31:38         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0109   0091           00044     MOVWF   PROT
+010A   1683           00045     BSF     STATUS,RP0      ;????? ???????? ??????
+010B   30FE           00046     MOVLW   0FEH            ;????????????? ??????????
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+010C   0085           00047     MOVWF   TRISA
+010D   300D           00048     MOVLW   0DH             ;????????????? ??????????
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+010E   0086           00049     MOVWF   TRISB
+010F   1283           00050     BCF     STATUS,RP0      ;????? ???????? ??????
+                      00051     
+0110                  00052 CYCLE:                      ;???? ?????????
+0110   0A90           00053     INCF    CNT,1           ;????????? ??????????
+0111   0805           00054     MOVF    PORTA,0         ;?????? ????? ?
+0112   390E           00055     ANDLW   0EH             ;????????? ??? ??????
+0113   0095           00056     MOVWF   PRT             ;?????????? ??????????
+                      00057     
+0114   3C02           00058     SUBLW   02H             ;?????????? ???????
+0115   1903           00059     BTFSC   STATUS,Z
+0116   1413           00060     BSF     CMD1,0
+                      00061     
+0117   0815           00062     MOVF    PRT,0
+0118   3C04           00063     SUBLW   04H
+0119   1903           00064     BTFSC   STATUS,Z
+011A   1414           00065     BSF     CMD2,0
+                      00066     
+011B   0815           00067     MOVF    PRT,0
+011C   3C0A           00068     SUBLW   0AH
+011D   1D03           00069     BTFSS   STATUS,Z
+011E   2???           00070     GOTO    MET1
+011F   0813           00071     MOVF    CMD1,0
+0120   3C01           00072     SUBLW   01H
+0121   1903           00073     BTFSC   STATUS,Z
+0122   1493           00074     BSF     CMD1,1
+                      00075     
+0123                  00076 MET1:
+0123   0815           00077     MOVF    PRT,0
+0124   3C0C           00078     SUBLW   0CH
+0125   1D03           00079     BTFSS   STATUS,Z
+0126   2???           00080     GOTO    MET2
+0127   0814           00081     MOVF    CMD2,0
+0128   3C01           00082     SUBLW   01H
+0129   1903           00083     BTFSC   STATUS,Z
+012A   1494           00084     BSF     CMD2,1
+                      00085     
+012B                  00086 MET2:
+012B   0815           00087     MOVF    PRT,0
+012C   3C02           00088     SUBLW   02H
+012D   1D03           00089     BTFSS   STATUS,Z
+012E   2???           00090     GOTO    MET3
+012F   0813           00091     MOVF    CMD1,0
+0130   3C03           00092     SUBLW   03H
+0131   1903           00093     BTFSC   STATUS,Z
+0132   1513           00094     BSF     CMD1,2
+MPASM 5.72                         ATEMI.ASM   12-4-2017  11:31:38         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00095     
+0133                  00096 MET3:
+0133   0815           00097     MOVF    PRT,0
+0134   3C04           00098     SUBLW   04H
+0135   1D03           00099     BTFSS   STATUS,Z
+0136   2???           00100     GOTO    MET4
+0137   0814           00101     MOVF    CMD2,0
+0138   3C03           00102     SUBLW   03H
+0139   1903           00103     BTFSC   STATUS,Z
+013A   1514           00104     BSF     CMD2,2
+                      00105     
+013B                  00106 MET4:
+013B   0815           00107     MOVF    PRT,0
+013C   1D03           00108     BTFSS   STATUS,Z
+013D   2???           00109     GOTO    MET5
+013E   0813           00110     MOVF    CMD1,0
+013F   3C07           00111     SUBLW   07H
+0140   1D03           00112     BTFSS   STATUS,Z
+0141   2???           00113     GOTO    MET5
+0142   0193           00114     CLRF    CMD1
+0143   0F92           00115     INCFSZ  SPEED,1         ;?????????? ????????
+0144   2???           00116     GOTO    MET5
+0145   0392           00117     DECF    SPEED,1         
+                      00118     
+0146                  00119 MET5:
+0146   0815           00120     MOVF    PRT,0
+0147   1D03           00121     BTFSS   STATUS,Z
+0148   2???           00122     GOTO    MET6
+0149   0814           00123     MOVF    CMD2,0
+014A   3C07           00124     SUBLW   07H
+014B   1D03           00125     BTFSS   STATUS,Z
+014C   2???           00126     GOTO    MET6
+014D   0194           00127     CLRF    CMD2
+014E   0812           00128     MOVF    SPEED,0
+014F   1D03           00129     BTFSS   STATUS,Z
+0150   0392           00130     DECF    SPEED,1         ;?????????? ????????
+                      00131  
+0151                  00132 MET6: 
+0151   1806           00133     BTFSC   PORTB,RB0       ;???? RB0=0,??
+0152   2???           00134     GOTO    MET7
+0153   0192           00135     CLRF    SPEED           ;????????? ????????
+0154   3064           00136     MOVLW   64H
+0155   0091           00137     MOVWF   PROT            ;?????????? PROT
+                      00138     
+0156                  00139 MET7:
+0156   0810           00140     MOVF    CNT,0           ;???? CNT=0
+0157   1D03           00141     BTFSS   STATUS,Z
+0158   2???           00142     GOTO    MET9
+0159   1C06           00143     BTFSS   PORTB,RB0       ;? RB0=1
+015A   2???           00144     GOTO    MET9
+015B   0812           00145     MOVF    SPEED,0         ;? SPEED!=0
+015C   1D03           00146     BTFSS   STATUS,Z
+015D   1405           00147     BSF     PORTA,RA0       ;?? ?????????? RA0
+MPASM 5.72                         ATEMI.ASM   12-4-2017  11:31:38         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00148     
+015E   0811           00149     MOVF    PROT,0          ;???? PROT!=0, ??
+015F   1903           00150     BTFSC   STATUS,Z
+0160   2???           00151     GOTO    MET8
+0161   0391           00152     DECF    PROT,1          ;????????? PROT ?? 1
+0162   1086           00153     BCF     PORTB,RB1       ;???????? ?????????? ????
+0163   2???           00154     GOTO    MET9
+                      00155    
+0164                  00156 MET8:    
+0164   1486           00157     BSF     PORTB,RB1       ;????? ?????????? ?????????? ????
+                      00158     
+0165                  00159 MET9:
+0165   0810           00160     MOVF    CNT,0           ;???? CNT=SPEED
+0166   0212           00161     SUBWF   SPEED,0
+0167   1D03           00162     BTFSS   STATUS,Z
+0168   2???           00163     GOTO    MET10
+0169   0810           00164     MOVF    CNT,0           ;? CNT!=255
+016A   3CFF           00165     SUBLW   0FFH
+016B   1D03           00166     BTFSS   STATUS,Z
+016C   1005           00167     BCF     PORTA,RA0       ;?? ???????? RA0
+                      00168 
+016D                  00169 MET10:
+016D   1906           00170     BTFSC   PORTB,RB2       ;???? RB2=0
+016E   2???           00171     GOTO    CYCLE
+016F   3064           00172     MOVLW   64H             ;?? ???????? PROT
+0170   0091           00173     MOVWF   PROT
+0171   2???           00174     GOTO    CYCLE
+                      00175     
+3FF9                  00176     END
+MPASM 5.72                         ATEMI.ASM   12-4-2017  11:31:38         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BEGIN                             00000100
+C                                 00000000
+CMD1                              00000013
+CMD2                              00000014
+CNT                               00000010
+CYCLE                             00000110
+DC                                00000001
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+MET1                              00000123
+MET10                             0000016D
+MET2                              0000012B
+MET3                              00000133
+MET4                              0000013B
+MET5                              00000146
+MET6                              00000151
+MET7                              00000156
+MET8                              00000164
+MET9                              00000165
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PROT                              00000011
+PRT                               00000015
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+MPASM 5.72                         ATEMI.ASM   12-4-2017  11:31:38         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+SPEED                             00000012
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+MPASM 5.72                         ATEMI.ASM   12-4-2017  11:31:38         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84                           00000001
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     2 reported,     0 suppressed
+
+

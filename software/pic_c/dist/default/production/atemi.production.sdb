@@ -1,0 +1,43 @@
+[p LITE_MODE AUTOSTATIC PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F84A ]
+[d frameptr 6 ]
+"25 D:\atemi\atemi.c
+[v _main main `(v  1 e 1 0 ]
+"62 C:\Program Files\Microchip\xc8\v1.41\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Program Files\Microchip\xc8\v1.41\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"6 C:\Program Files\Microchip\xc8\v1.41\sources\pic\eeprom.c
+[v _eecpymem eecpymem `(v  1 e 1 0 ]
+"39
+[v _memcpyee memcpyee `(v  1 e 1 0 ]
+"23 D:\atemi\atemi.c
+[v _prot prot `uc  1 e 1 0 ]
+[v _cnt cnt `uc  1 e 1 0 ]
+[v _speed speed `uc  1 e 1 0 ]
+[v _cmd1 cmd1 `uc  1 e 1 0 ]
+[v _cmd2 cmd2 `uc  1 e 1 0 ]
+[v _prt prt `uc  1 e 1 0 ]
+"158 C:\Program Files\Microchip\xc8\v1.41\include\pic16f84a.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"201
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"439
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"482
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"624
+[v _RA0 RA0 `VEb  1 e 0 @40 ]
+"634
+[v _RB0 RB0 `VEb  1 e 0 @48 ]
+"636
+[v _RB1 RB1 `VEb  1 e 0 @49 ]
+"638
+[v _RB2 RB2 `VEb  1 e 0 @50 ]
+"25 D:\atemi\atemi.c
+[v _main main `(v  1 e 1 0 ]
+{
+"82
+} 0

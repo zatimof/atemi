@@ -1,0 +1,268 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$C:\Temp\s18o.obj
+end_init CODE 0 0 0 1 2
+config CONFIG 0 2007 2007 1 2
+$dist/default/production\atemi.production.obj
+cinit CODE 0 3F8 3F8 8 2
+nvBANK0 BANK0 1 10 10 1 1
+maintext CODE 0 37C 37C 7C 2
+cstackBANK0 BANK0 1 12 12 1 1
+bssBANK0 BANK0 1 C C 4 1
+idataBANK0 CODE 0 37B 37B 1 2
+dataBANK0 BANK0 1 11 11 1 1
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 13-4D 1
+BANK0 13-4D 1
+CONST 1-37A 2
+ENTRY 1-37A 2
+IDLOC 2000-2003 2
+STACK 13-4D 1
+CODE 1-37A 2
+SFR0 0-B 1
+SFR1 80-CD 1
+EEDATA 2100-213F 2
+STRCODE 1-37A 2
+STRING 1-37A 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$dist/default/production\atemi.production.obj
+3F8 cinit CODE >107:C:\Temp\s18o.
+3F8 cinit CODE >110:C:\Temp\s18o.
+3F8 cinit CODE >139:C:\Temp\s18o.
+3F9 cinit CODE >140:C:\Temp\s18o.
+3FA cinit CODE >144:C:\Temp\s18o.
+3FB cinit CODE >145:C:\Temp\s18o.
+3FC cinit CODE >146:C:\Temp\s18o.
+3FD cinit CODE >147:C:\Temp\s18o.
+3FE cinit CODE >153:C:\Temp\s18o.
+3FE cinit CODE >155:C:\Temp\s18o.
+3FF cinit CODE >156:C:\Temp\s18o.
+37C maintext CODE >25:D:\atemi\atemi.c
+37C maintext CODE >27:D:\atemi\atemi.c
+37F maintext CODE >29:D:\atemi\atemi.c
+381 maintext CODE >30:D:\atemi\atemi.c
+383 maintext CODE >31:D:\atemi\atemi.c
+384 maintext CODE >35:D:\atemi\atemi.c
+388 maintext CODE >36:D:\atemi\atemi.c
+38D maintext CODE >37:D:\atemi\atemi.c
+390 maintext CODE >38:D:\atemi\atemi.c
+391 maintext CODE >39:D:\atemi\atemi.c
+394 maintext CODE >40:D:\atemi\atemi.c
+395 maintext CODE >41:D:\atemi\atemi.c
+39C maintext CODE >42:D:\atemi\atemi.c
+39D maintext CODE >43:D:\atemi\atemi.c
+3A4 maintext CODE >44:D:\atemi\atemi.c
+3A5 maintext CODE >45:D:\atemi\atemi.c
+3AD maintext CODE >46:D:\atemi\atemi.c
+3AE maintext CODE >47:D:\atemi\atemi.c
+3B6 maintext CODE >48:D:\atemi\atemi.c
+3B7 maintext CODE >49:D:\atemi\atemi.c
+3BE maintext CODE >51:D:\atemi\atemi.c
+3C2 maintext CODE >52:D:\atemi\atemi.c
+3C5 maintext CODE >53:D:\atemi\atemi.c
+3C9 maintext CODE >54:D:\atemi\atemi.c
+3CA maintext CODE >56:D:\atemi\atemi.c
+3D1 maintext CODE >58:D:\atemi\atemi.c
+3D3 maintext CODE >59:D:\atemi\atemi.c
+3D5 maintext CODE >60:D:\atemi\atemi.c
+3D6 maintext CODE >61:D:\atemi\atemi.c
+3D7 maintext CODE >63:D:\atemi\atemi.c
+3D8 maintext CODE >64:D:\atemi\atemi.c
+3D9 maintext CODE >66:D:\atemi\atemi.c
+3E0 maintext CODE >67:D:\atemi\atemi.c
+3E1 maintext CODE >68:D:\atemi\atemi.c
+3E8 maintext CODE >69:D:\atemi\atemi.c
+3E9 maintext CODE >71:D:\atemi\atemi.c
+3EC maintext CODE >73:D:\atemi\atemi.c
+3EE maintext CODE >74:D:\atemi\atemi.c
+3EF maintext CODE >75:D:\atemi\atemi.c
+3F0 maintext CODE >76:D:\atemi\atemi.c
+3F0 maintext CODE >77:D:\atemi\atemi.c
+3F1 maintext CODE >78:D:\atemi\atemi.c
+3F3 maintext CODE >79:D:\atemi\atemi.c
+3F7 maintext CODE >33:D:\atemi\atemi.c
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+___latbits 0 0 ABS 0 - dist/default/production\atemi.production.obj
+__LdataBANK0 0 0 ABS 0 dataBANK0 -
+__Hspace_0 2008 0 ABS 0 - -
+__Hspace_1 13 0 ABS 0 - -
+__Hspace_2 0 0 ABS 0 - -
+__Hspace_3 0 0 ABS 0 - -
+__HidataBANK0 0 0 ABS 0 idataBANK0 -
+__Heeprom_data 0 0 EEDATA 3 eeprom_data -
+__Hstrings 0 0 ABS 0 strings -
+___sp 0 0 STACK 2 stack C:\Temp\s18o.obj
+_cmd1 D 0 BANK0 1 bssBANK0 dist/default/production\atemi.production.obj
+_cmd2 C 0 BANK0 1 bssBANK0 dist/default/production\atemi.production.obj
+_main 6F8 0 CODE 0 maintext dist/default/production\atemi.production.obj
+_prot 11 0 BANK0 1 dataBANK0 dist/default/production\atemi.production.obj
+btemp 4E 0 ABS 0 - dist/default/production\atemi.production.obj
+start 0 0 CODE 0 init C:\Temp\s18o.obj
+__size_of_main 0 0 ABS 0 - dist/default/production\atemi.production.obj
+__LidataBANK0 0 0 ABS 0 idataBANK0 -
+__Hpowerup 0 0 CODE 0 powerup -
+intlevel0 0 0 CODE 0 functab C:\Temp\s18o.obj
+intlevel1 0 0 CODE 0 functab C:\Temp\s18o.obj
+intlevel2 0 0 CODE 0 functab C:\Temp\s18o.obj
+intlevel3 0 0 CODE 0 functab C:\Temp\s18o.obj
+intlevel4 0 0 CODE 0 functab C:\Temp\s18o.obj
+intlevel5 0 0 CODE 0 functab C:\Temp\s18o.obj
+wtemp0 4E 0 ABS 0 - dist/default/production\atemi.production.obj
+__Hfunctab 0 0 CODE 0 functab -
+__Hclrtext 0 0 ABS 0 clrtext -
+__Lmaintext 0 0 ABS 0 maintext -
+__LnvBANK0 0 0 ABS 0 nvBANK0 -
+start_initialization 7F0 0 CODE 0 cinit dist/default/production\atemi.production.obj
+__pcstackBANK0 12 0 BANK0 1 cstackBANK0 dist/default/production\atemi.production.obj
+___int_sp 0 0 STACK 2 stack C:\Temp\s18o.obj
+__Hbank0 0 0 ABS 0 bank0 -
+__Hbank1 0 0 BANK1 1 bank1 -
+__Hcinit 800 0 CODE 0 cinit -
+__Hidloc 0 0 IDLOC 0 idloc -
+__Hstack 0 0 STACK 2 stack -
+__Hmaintext 0 0 ABS 0 maintext -
+__Hcommon 0 0 ABS 0 common -
+__Hconfig 4010 0 CONFIG 0 config -
+__Lbank0 0 0 ABS 0 bank0 -
+__Lbank1 0 0 BANK1 1 bank1 -
+__Lcinit 7F0 0 CODE 0 cinit -
+__Lidloc 0 0 IDLOC 0 idloc -
+__Lstack 0 0 STACK 2 stack -
+__Habs1 0 0 ABS 0 abs1 -
+__Hcode 0 0 ABS 0 code -
+__Hinit 0 0 CODE 0 init -
+__Hsfr0 0 0 ABS 0 sfr0 -
+__Hsfr1 0 0 ABS 0 sfr1 -
+__Htext 0 0 ABS 0 text -
+__Labs1 0 0 ABS 0 abs1 -
+__Lcode 0 0 ABS 0 code -
+__Linit 0 0 CODE 0 init -
+__Lsfr0 0 0 ABS 0 sfr0 -
+__Lsfr1 0 0 ABS 0 sfr1 -
+__Ltext 0 0 ABS 0 text -
+__pnvBANK0 10 0 BANK0 1 nvBANK0 dist/default/production\atemi.production.obj
+__LcstackBANK0 0 0 ABS 0 cstackBANK0 -
+_RA0 28 0 ABS 0 - dist/default/production\atemi.production.obj
+_RB0 30 0 ABS 0 - dist/default/production\atemi.production.obj
+_RB1 31 0 ABS 0 - dist/default/production\atemi.production.obj
+_RB2 32 0 ABS 0 - dist/default/production\atemi.production.obj
+__S0 2008 0 ABS 0 - -
+__S1 13 0 ABS 0 - -
+__S2 0 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+_cnt F 0 BANK0 1 bssBANK0 dist/default/production\atemi.production.obj
+_prt 10 0 BANK0 1 nvBANK0 dist/default/production\atemi.production.obj
+__HnvBANK0 0 0 ABS 0 nvBANK0 -
+__Lintentry 0 0 CODE 0 intentry -
+reset_vec 0 0 CODE 0 reset_vec C:\Temp\s18o.obj
+__pdataBANK0 11 0 BANK0 1 dataBANK0 dist/default/production\atemi.production.obj
+__LbssBANK0 0 0 ABS 0 bssBANK0 -
+__pmaintext 6F8 0 CODE 0 maintext dist/default/production\atemi.production.obj
+__Lcommon 0 0 ABS 0 common -
+__Lconfig 400E 0 CONFIG 0 config -
+__CFG_CP$OFF 0 0 ABS 0 - dist/default/production\atemi.production.obj
+__CFG_WDTE$OFF 0 0 ABS 0 - dist/default/production\atemi.production.obj
+stackhi 0 0 ABS 0 - C:\Temp\s18o.obj
+stacklo 0 0 ABS 0 - C:\Temp\s18o.obj
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_2 0 0 ABS 0 - -
+__Lspace_3 0 0 ABS 0 - -
+__HcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__Lend_init 0 0 CODE 0 end_init -
+end_of_initialization 7FC 0 CODE 0 cinit dist/default/production\atemi.production.obj
+__Hintentry 0 0 CODE 0 intentry -
+__Lstrings 0 0 ABS 0 strings -
+__Hreset_vec 0 0 CODE 0 reset_vec -
+__HbssBANK0 0 0 ABS 0 bssBANK0 -
+__Lpowerup 0 0 CODE 0 powerup -
+__Leeprom_data 0 0 EEDATA 3 eeprom_data -
+__Lreset_vec 0 0 CODE 0 reset_vec -
+__CFG_FOSC$HS 0 0 ABS 0 - dist/default/production\atemi.production.obj
+__end_of__initialization 7FC 0 CODE 0 cinit dist/default/production\atemi.production.obj
+__Lfunctab 0 0 CODE 0 functab -
+__pidataBANK0 6F6 0 CODE 0 idataBANK0 dist/default/production\atemi.production.obj
+__Lclrtext 0 0 ABS 0 clrtext -
+__Hend_init 2 0 CODE 0 end_init -
+__end_of_main 7F0 0 CODE 0 maintext dist/default/production\atemi.production.obj
+_PORTA 5 0 ABS 0 - dist/default/production\atemi.production.obj
+_PORTB 6 0 ABS 0 - dist/default/production\atemi.production.obj
+_TRISA 85 0 ABS 0 - dist/default/production\atemi.production.obj
+_TRISB 86 0 ABS 0 - dist/default/production\atemi.production.obj
+__Hram 0 0 ABS 0 ram -
+__Lram 0 0 ABS 0 ram -
+_speed E 0 BANK0 1 bssBANK0 dist/default/production\atemi.production.obj
+__HdataBANK0 0 0 ABS 0 dataBANK0 -
+__initialization 7F0 0 CODE 0 cinit dist/default/production\atemi.production.obj
+__CFG_PWRTE$OFF 0 0 ABS 0 - dist/default/production\atemi.production.obj
+__pbssBANK0 C 0 BANK0 1 bssBANK0 dist/default/production\atemi.production.obj
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+- 1 4E 2
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+cinit 0 3F8 7F0 8 2
+maintext 0 37C 6F8 7C 2
+reset_vec 0 0 0 1 2
+bssBANK0 1 C C 7 1
+idataBANK0 0 37B 6F6 1 2
+config 0 2007 400E 1 2

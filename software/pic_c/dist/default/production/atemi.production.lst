@@ -1,0 +1,496 @@
+
+
+Microchip Technology PIC LITE Macro Assembler V1.41 build -162212810 
+                                                                                               Thu Nov 02 10:08:17 2017
+
+Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250102
+     1                           	processor	16F84A
+     2                           	opt	pw 120
+     3                           	opt	lm
+     4                           	psect	idataBANK0,global,class=CODE,delta=2
+     5                           	psect	nvBANK0,global,class=BANK0,space=1,delta=1
+     6                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     7                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+     8                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    10                           	psect	maintext,global,class=CODE,split=1,delta=2
+    11                           	dabs	1,0x4E,2
+    12  0000                     
+    13                           ; Version 1.41
+    14                           ; Generated 25/01/2017 GMT
+    15                           ; 
+    16                           ; Copyright © 2017, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    17                           ; All rights reserved.
+    18                           ; 
+    19                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    20                           ; 
+    21                           ; Redistribution and use in source and binary forms, with or without modification, are
+    22                           ; permitted provided that the following conditions are met:
+    23                           ; 
+    24                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    25                           ;        conditions and the following disclaimer.
+    26                           ; 
+    27                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    28                           ;        of conditions and the following disclaimer in the documentation and/or other
+    29                           ;        materials provided with the distribution.
+    30                           ; 
+    31                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    32                           ;        software without specific prior written permission.
+    33                           ; 
+    34                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    35                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    36                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    37                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    38                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    39                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    40                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    41                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    42                           ; 
+    43                           ; 
+    44                           ; Code-generator required, PIC16F84A Definitions
+    45                           ; 
+    46                           ; SFR Addresses
+    47  0000                     	;# 
+    48  0001                     	;# 
+    49  0002                     	;# 
+    50  0003                     	;# 
+    51  0004                     	;# 
+    52  0005                     	;# 
+    53  0006                     	;# 
+    54  0008                     	;# 
+    55  0009                     	;# 
+    56  000A                     	;# 
+    57  000B                     	;# 
+    58  0081                     	;# 
+    59  0085                     	;# 
+    60  0086                     	;# 
+    61  0088                     	;# 
+    62  0089                     	;# 
+    63                           
+    64                           	psect	idataBANK0
+    65  037B                     __pidataBANK0:	
+    66                           
+    67                           ;initializer for _prot
+    68  037B  34FF               	retlw	255
+    69                           
+    70                           	psect	nvBANK0
+    71  0010                     __pnvBANK0:	
+    72  0010                     _prt:	
+    73  0010                     	ds	1
+    74  0006                     _PORTB	set	6
+    75  0005                     _PORTA	set	5
+    76  0032                     _RB2	set	50
+    77  0031                     _RB1	set	49
+    78  0028                     _RA0	set	40
+    79  0030                     _RB0	set	48
+    80  0086                     _TRISB	set	134
+    81  0085                     _TRISA	set	133
+    82                           
+    83                           ; #config settings
+    84  0000                     
+    85                           	psect	cinit
+    86  03F8                     start_initialization:	
+    87  03F8                     __initialization:	
+    88                           
+    89                           ; Initialize objects allocated to BANK0
+    90  03F8  237B               	fcall	__pidataBANK0	;fetch initializer
+    91  03F9  0091               	movwf	__pdataBANK0& (0+127)
+    92                           
+    93                           ; Clear objects allocated to BANK0
+    94  03FA  018C               	clrf	__pbssBANK0& (0+127)
+    95  03FB  018D               	clrf	(__pbssBANK0+1)& (0+127)
+    96  03FC  018E               	clrf	(__pbssBANK0+2)& (0+127)
+    97  03FD  018F               	clrf	(__pbssBANK0+3)& (0+127)
+    98  03FE                     end_of_initialization:	
+    99                           ;End of C runtime variable initialization code
+   100                           
+   101  03FE                     __end_of__initialization:	
+   102  03FE  0183               	clrf	3
+   103  03FF  2B7C               	ljmp	_main	;jump to C main() function
+   104                           
+   105                           	psect	bssBANK0
+   106  000C                     __pbssBANK0:	
+   107  000C                     _cmd2:	
+   108  000C                     	ds	1
+   109  000D                     _cmd1:	
+   110  000D                     	ds	1
+   111  000E                     _speed:	
+   112  000E                     	ds	1
+   113  000F                     _cnt:	
+   114  000F                     	ds	1
+   115                           
+   116                           	psect	dataBANK0
+   117  0011                     __pdataBANK0:	
+   118  0011                     _prot:	
+   119  0011                     	ds	1
+   120                           
+   121                           	psect	cstackBANK0
+   122  0012                     __pcstackBANK0:	
+   123  0012                     ?_main:	
+   124  0012                     ??_main:	
+   125                           ; 1 bytes @ 0x0
+   126                           
+   127                           
+   128                           ; 1 bytes @ 0x0
+   129  0012                     	ds	1
+   130                           
+   131                           	psect	maintext
+   132  037C                     __pmaintext:	
+   133 ;;
+   134 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   135 ;;
+   136 ;; *************** function _main *****************
+   137 ;; Defined at:
+   138 ;;		line 25 in file "atemi.c"
+   139 ;; Parameters:    Size  Location     Type
+   140 ;;		None
+   141 ;; Auto vars:     Size  Location     Type
+   142 ;;		None
+   143 ;; Return value:  Size  Location     Type
+   144 ;;                  1    wreg      void 
+   145 ;; Registers used:
+   146 ;;		wreg, status,2, status,0
+   147 ;; Tracked objects:
+   148 ;;		On entry : B00/0
+   149 ;;		On exit  : 0/0
+   150 ;;		Unchanged: 0/0
+   151 ;; Data sizes:     COMMON   BANK0
+   152 ;;      Params:         0       0
+   153 ;;      Locals:         0       0
+   154 ;;      Temps:          0       1
+   155 ;;      Totals:         0       1
+   156 ;;Total ram usage:        1 bytes
+   157 ;; This function calls:
+   158 ;;		Nothing
+   159 ;; This function is called by:
+   160 ;;		Startup code after reset
+   161 ;; This function uses a non-reentrant model
+   162 ;;
+   163                           
+   164                           
+   165                           ;psect for function _main
+   166  037C                     _main:	
+   167                           
+   168                           ;atemi.c: 27: TRISA=0xFE;
+   169                           
+   170                           ;incstack = 0
+   171                           ; Regs used in _main: [wreg+status,2+status,0]
+   172  037C  30FE               	movlw	254
+   173  037D  1683               	bsf	3,5	;RP0=1, select bank1
+   174  037E  0085               	movwf	5	;volatile
+   175                           
+   176                           ;atemi.c: 29: TRISB=0xFD;
+   177  037F  30FD               	movlw	253
+   178  0380  0086               	movwf	6	;volatile
+   179                           
+   180                           ;atemi.c: 30: PORTA=0x00;
+   181  0381  1283               	bcf	3,5	;RP0=0, select bank0
+   182  0382  0185               	clrf	5	;volatile
+   183                           
+   184                           ;atemi.c: 31: PORTB=0x00;
+   185  0383  0186               	clrf	6	;volatile
+   186  0384                     l602:	
+   187                           ;atemi.c: 33: while(1)
+   188                           
+   189                           
+   190                           ;atemi.c: 34: {
+   191                           ;atemi.c: 35: cnt++;
+   192  0384  3001               	movlw	1
+   193  0385  0092               	movwf	??_main
+   194  0386  0812               	movf	??_main,w
+   195  0387  078F               	addwf	_cnt,f
+   196                           
+   197                           ;atemi.c: 36: prt=PORTA&0x0E;
+   198  0388  0805               	movf	5,w	;volatile
+   199  0389  390E               	andlw	14
+   200  038A  0092               	movwf	??_main
+   201  038B  0812               	movf	??_main,w
+   202  038C  0090               	movwf	_prt
+   203                           
+   204                           ;atemi.c: 37: if(prt==2)
+   205  038D  3002               	movlw	2
+   206  038E  0610               	xorwf	_prt,w
+   207  038F  1903               	btfsc	3,2
+   208                           
+   209                           ;atemi.c: 38: cmd1|=1;
+   210  0390  140D               	bsf	_cmd1,0
+   211                           
+   212                           ;atemi.c: 39: if(prt==4)
+   213  0391  3004               	movlw	4
+   214  0392  0610               	xorwf	_prt,w
+   215  0393  1903               	btfsc	3,2
+   216                           
+   217                           ;atemi.c: 40: cmd2|=1;
+   218  0394  140C               	bsf	_cmd2,0
+   219                           
+   220                           ;atemi.c: 41: if((prt==10)&&(cmd1==1))
+   221  0395  300A               	movlw	10
+   222  0396  0610               	xorwf	_prt,w
+   223  0397  1D03               	btfss	3,2
+   224  0398  2B9D               	goto	l620
+   225  0399  030D               	decf	_cmd1,w
+   226  039A  1D03               	btfss	3,2
+   227  039B  2B9D               	goto	l620
+   228                           
+   229                           ;atemi.c: 42: cmd1|=2;
+   230  039C  148D               	bsf	_cmd1,1
+   231  039D                     l620:	
+   232                           
+   233                           ;atemi.c: 43: if((prt==12)&&(cmd2==1))
+   234  039D  300C               	movlw	12
+   235  039E  0610               	xorwf	_prt,w
+   236  039F  1D03               	btfss	3,2
+   237  03A0  2BA5               	goto	l626
+   238  03A1  030C               	decf	_cmd2,w
+   239  03A2  1D03               	btfss	3,2
+   240  03A3  2BA5               	goto	l626
+   241                           
+   242                           ;atemi.c: 44: cmd2|=2;
+   243  03A4  148C               	bsf	_cmd2,1
+   244  03A5                     l626:	
+   245                           
+   246                           ;atemi.c: 45: if((prt==2)&&(cmd1==3))
+   247  03A5  3002               	movlw	2
+   248  03A6  0610               	xorwf	_prt,w
+   249  03A7  1D03               	btfss	3,2
+   250  03A8  2BAE               	goto	l632
+   251  03A9  3003               	movlw	3
+   252  03AA  060D               	xorwf	_cmd1,w
+   253  03AB  1D03               	btfss	3,2
+   254  03AC  2BAE               	goto	l632
+   255                           
+   256                           ;atemi.c: 46: cmd1|=4;
+   257  03AD  150D               	bsf	_cmd1,2
+   258  03AE                     l632:	
+   259                           
+   260                           ;atemi.c: 47: if((prt==4)&&(cmd2==3))
+   261  03AE  3004               	movlw	4
+   262  03AF  0610               	xorwf	_prt,w
+   263  03B0  1D03               	btfss	3,2
+   264  03B1  2BB7               	goto	l638
+   265  03B2  3003               	movlw	3
+   266  03B3  060C               	xorwf	_cmd2,w
+   267  03B4  1D03               	btfss	3,2
+   268  03B5  2BB7               	goto	l638
+   269                           
+   270                           ;atemi.c: 48: cmd2|=4;
+   271  03B6  150C               	bsf	_cmd2,2
+   272  03B7                     l638:	
+   273                           
+   274                           ;atemi.c: 49: if((prt==0)&&(cmd1==7))
+   275  03B7  0810               	movf	_prt,w
+   276  03B8  1D03               	btfss	3,2
+   277  03B9  2BCA               	goto	l648
+   278  03BA  3007               	movlw	7
+   279  03BB  060D               	xorwf	_cmd1,w
+   280  03BC  1D03               	btfss	3,2
+   281  03BD  2BCA               	goto	l648
+   282                           
+   283                           ;atemi.c: 50: {
+   284                           ;atemi.c: 51: speed++;
+   285  03BE  3001               	movlw	1
+   286  03BF  0092               	movwf	??_main
+   287  03C0  0812               	movf	??_main,w
+   288  03C1  078E               	addwf	_speed,f
+   289                           
+   290                           ;atemi.c: 52: if(speed==0)
+   291  03C2  080E               	movf	_speed,w
+   292  03C3  1D03               	btfss	3,2
+   293  03C4  2BC9               	goto	l646
+   294                           
+   295                           ;atemi.c: 53: speed=255;
+   296  03C5  30FF               	movlw	255
+   297  03C6  0092               	movwf	??_main
+   298  03C7  0812               	movf	??_main,w
+   299  03C8  008E               	movwf	_speed
+   300  03C9                     l646:	
+   301                           
+   302                           ;atemi.c: 54: cmd1=0;
+   303  03C9  018D               	clrf	_cmd1
+   304  03CA                     l648:	
+   305                           
+   306                           ;atemi.c: 55: }
+   307                           ;atemi.c: 56: if((prt==0)&&(cmd2==7))
+   308  03CA  0810               	movf	_prt,w
+   309  03CB  1D03               	btfss	3,2
+   310  03CC  2BD7               	goto	l656
+   311  03CD  3007               	movlw	7
+   312  03CE  060C               	xorwf	_cmd2,w
+   313  03CF  1D03               	btfss	3,2
+   314  03D0  2BD7               	goto	l656
+   315                           
+   316                           ;atemi.c: 57: {
+   317                           ;atemi.c: 58: speed--;
+   318  03D1  3001               	movlw	1
+   319  03D2  028E               	subwf	_speed,f
+   320                           
+   321                           ;atemi.c: 59: if(speed==255)
+   322  03D3  0A0E               	incf	_speed,w
+   323  03D4  1903               	btfsc	3,2
+   324                           
+   325                           ;atemi.c: 60: speed=0;
+   326  03D5  018E               	clrf	_speed
+   327                           
+   328                           ;atemi.c: 61: cmd2=0;
+   329  03D6  018C               	clrf	_cmd2
+   330  03D7                     l656:	
+   331                           
+   332                           ;atemi.c: 62: }
+   333                           ;atemi.c: 63: if(!RB0)
+   334  03D7  1C06               	btfss	6,0	;volatile
+   335                           
+   336                           ;atemi.c: 64: speed=0;
+   337  03D8  018E               	clrf	_speed
+   338                           
+   339                           ;atemi.c: 66: if((cnt==0)&&(RB0==1)&&(speed))
+   340  03D9  080F               	movf	_cnt,w
+   341  03DA  1903               	btfsc	3,2
+   342  03DB  1C06               	btfss	6,0	;volatile
+   343  03DC  2BE1               	goto	l668
+   344  03DD  080E               	movf	_speed,w
+   345  03DE  1903               	btfsc	3,2
+   346  03DF  2BE1               	goto	l668
+   347                           
+   348                           ;atemi.c: 67: RA0=1;
+   349  03E0  1405               	bsf	5,0	;volatile
+   350  03E1                     l668:	
+   351                           
+   352                           ;atemi.c: 68: if((cnt==speed)&&(cnt!=255))
+   353  03E1  080F               	movf	_cnt,w
+   354  03E2  060E               	xorwf	_speed,w
+   355  03E3  1D03               	skipz
+   356  03E4  2BE9               	goto	l674
+   357  03E5  0A0F               	incf	_cnt,w
+   358  03E6  1903               	btfsc	3,2
+   359  03E7  2BE9               	goto	l674
+   360                           
+   361                           ;atemi.c: 69: RA0=0;
+   362  03E8  1005               	bcf	5,0	;volatile
+   363  03E9                     l674:	
+   364                           
+   365                           ;atemi.c: 71: if(prot)
+   366  03E9  0811               	movf	_prot,w
+   367  03EA  1903               	btfsc	3,2
+   368  03EB  2BF0               	goto	l45
+   369                           
+   370                           ;atemi.c: 72: {
+   371                           ;atemi.c: 73: prot--;
+   372  03EC  3001               	movlw	1
+   373  03ED  0291               	subwf	_prot,f
+   374                           
+   375                           ;atemi.c: 74: RB1=0;
+   376  03EE  1086               	bcf	6,1	;volatile
+   377                           
+   378                           ;atemi.c: 75: }
+   379  03EF  2BF1               	goto	l46
+   380  03F0                     l45:	
+   381                           
+   382                           ;atemi.c: 76: else
+   383                           ;atemi.c: 77: RB1=1;
+   384  03F0  1486               	bsf	6,1	;volatile
+   385  03F1                     l46:	
+   386                           
+   387                           ;atemi.c: 78: if(!RB2)
+   388  03F1  1906               	btfsc	6,2	;volatile
+   389  03F2  2B84               	goto	l602
+   390                           
+   391                           ;atemi.c: 79: prot=255;
+   392  03F3  30FF               	movlw	255
+   393  03F4  0092               	movwf	??_main
+   394  03F5  0812               	movf	??_main,w
+   395  03F6  0091               	movwf	_prot
+   396  03F7  2B84               	goto	l602
+   397  03F8                     __end_of_main:	
+   398                           ;atemi.c: 80: }
+   399                           ;atemi.c: 81: return;
+   400                           
+   401  004E                     btemp	set	78	;btemp
+   402  004E                     wtemp0	set	78
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        1
+    BSS         4
+    Persistent  1
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON            0      0       0
+    BANK0            66      1       7
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 1     1      0       0
+                                              0 BANK0      1     1      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 0
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+SFR1                 0      0       0       2        0.0%
+BITSFR1              0      0       0       2        0.0%
+BANK0               42      1       7       3       10.6%
+BITBANK0            42      0       0       5        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+COMMON               0      0       0       1        0.0%
+BITCOMMON            0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+DATA                 0      0       7       6        0.0%
+ABS                  0      0       7       4        0.0%
+NULL                 0      0       0       0        0.0%
+STACK                0      0       0       2        0.0%
+EEDATA              40      0       0       0        0.0%
+
+
+Microchip Technology PIC Macro Assembler V1.41 build -162212810 
+Symbol Table                                                                                   Thu Nov 02 10:08:17 2017
+
+            __CFG_CP$OFF 0000                       l45 03F0                       l46 03F1  
+                    l602 0384                      l620 039D                      l632 03AE  
+                    l626 03A5                      l646 03C9                      l638 03B7  
+                    l656 03D7                      l648 03CA                      l674 03E9  
+                    l668 03E1                      _RA0 0028                      _RB0 0030  
+                    _RB1 0031                      _RB2 0032                      _cnt 000F  
+                    _prt 0010             __CFG_FOSC$HS 0000                     _cmd1 000D  
+                   _cmd2 000C                     _main 037C                     _prot 0011  
+                   btemp 004E                     start 0000                    ?_main 0012  
+          __CFG_WDTE$OFF 0000                    _PORTA 0005                    _PORTB 0006  
+                  _TRISA 0085                    _TRISB 0086                    _speed 000E  
+                  status 0003                    wtemp0 004E          __initialization 03F8  
+           __end_of_main 03F8                   ??_main 0012           __CFG_PWRTE$OFF 0000  
+__end_of__initialization 03FE             __pidataBANK0 037B               __pbssBANK0 000C  
+             __pmaintext 037C     end_of_initialization 03FE      start_initialization 03F8  
+            __pdataBANK0 0011                ___latbits 0000            __pcstackBANK0 0012  
+              __pnvBANK0 0010            __size_of_main 007C  

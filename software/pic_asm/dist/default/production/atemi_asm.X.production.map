@@ -1,0 +1,58 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Mon Dec 04 11:31:54 2017
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000002
+                   .cinit    romdata   0x000001    program   0x000004
+                   .org_1       code   0x000100    program   0x0000e4
+.config_2007_BUILD/DEFAULT/PRODUCTION/ATEMI.O       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000002      
+                            0x000100    0x000171      
+                            0x002007    0x002007      
+            118 out of 1093 program addresses used, program memory utilization is 10%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BEGIN   0x000100    program     static D:\atemi_asm.X\atemi.asm 
+                    CYCLE   0x000110    program     static D:\atemi_asm.X\atemi.asm 
+                     MET1   0x000123    program     static D:\atemi_asm.X\atemi.asm 
+                    MET10   0x00016d    program     static D:\atemi_asm.X\atemi.asm 
+                     MET2   0x00012b    program     static D:\atemi_asm.X\atemi.asm 
+                     MET3   0x000133    program     static D:\atemi_asm.X\atemi.asm 
+                     MET4   0x00013b    program     static D:\atemi_asm.X\atemi.asm 
+                     MET5   0x000146    program     static D:\atemi_asm.X\atemi.asm 
+                     MET6   0x000151    program     static D:\atemi_asm.X\atemi.asm 
+                     MET7   0x000156    program     static D:\atemi_asm.X\atemi.asm 
+                     MET8   0x000164    program     static D:\atemi_asm.X\atemi.asm 
+                     MET9   0x000165    program     static D:\atemi_asm.X\atemi.asm 
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BEGIN   0x000100    program     static D:\atemi_asm.X\atemi.asm 
+                    CYCLE   0x000110    program     static D:\atemi_asm.X\atemi.asm 
+                     MET1   0x000123    program     static D:\atemi_asm.X\atemi.asm 
+                     MET2   0x00012b    program     static D:\atemi_asm.X\atemi.asm 
+                     MET3   0x000133    program     static D:\atemi_asm.X\atemi.asm 
+                     MET4   0x00013b    program     static D:\atemi_asm.X\atemi.asm 
+                     MET5   0x000146    program     static D:\atemi_asm.X\atemi.asm 
+                     MET6   0x000151    program     static D:\atemi_asm.X\atemi.asm 
+                     MET7   0x000156    program     static D:\atemi_asm.X\atemi.asm 
+                     MET8   0x000164    program     static D:\atemi_asm.X\atemi.asm 
+                     MET9   0x000165    program     static D:\atemi_asm.X\atemi.asm 
+                    MET10   0x00016d    program     static D:\atemi_asm.X\atemi.asm 
+
+
